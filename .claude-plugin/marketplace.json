@@ -1,0 +1,13 @@
+{
+  "name": "coding-plan",
+  "version": "1.0.0",
+  "description": "Use Alibaba Bailian Coding Plan from Claude Code for code reviews and task delegation.",
+  "author": {
+    "name": "Alibaba Cloud"
+  },
+  "plugins": {
+    "coding-plan": {
+      "path": "."
+    }
+  }
+}
