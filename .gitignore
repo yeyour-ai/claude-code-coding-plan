@@ -1,0 +1,13 @@
+node_modules/
+.generated/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*.log
+npm-debug.log*
+coverage/
+dist/
+build/

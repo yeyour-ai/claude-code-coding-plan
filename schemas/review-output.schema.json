@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Coding Plan Review Output",
+  "description": "Schema for structured code review output from Coding Plan models",
+  "type": "object",
+  "properties": {
+    "reviewId": {
+      "type": "string",
+      "description": "Unique identifier for this review"
+    },
+    "model": {
+      "type": "string",
+      "description": "Model used for the review"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the review was performed"
+    },
+    "targetType": {
+      "type": "string",
+      "enum": ["working-tree", "branch"],
+      "description": "Type of review target"
+    },
+    "baseBranch": {
+      "type": "string",
+      "description": "Base branch for branch review (if applicable)"
+    },
+    "overallAssessment": {
+      "type": "string",
+      "enum": ["excellent", "good", "needs-improvement", "critical-issues"],
+      "description": "Overall quality assessment"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Brief summary of the review findings"
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": ["critical", "major", "minor", "suggestion"],
+            "description": "Severity level of the issue"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["bug", "performance", "security", "maintainability", "best-practice", "style"],
+            "description": "Category of the issue"
+          },
+          "file": {
+            "type": "string",
+            "description": "File where the issue was found"
+          },
+          "line": {
+            "type": "integer",
+            "description": "Line number (if applicable)"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the issue"
+          },
+          "suggestion": {
+            "type": "string",
+            "description": "Suggested fix or improvement"
+          },
+          "codeExample": {
+            "type": "string",
+            "description": "Code example showing the issue or fix"
+          }
+        },
+        "required": ["severity", "category", "description"]
+      },
+      "description": "List of issues found during review"
+    },
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Positive aspects of the code"
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "High-level recommendations for improvement"
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "filesReviewed": {
+          "type": "integer",
+          "description": "Number of files reviewed"
+        },
+        "linesChanged": {
+          "type": "integer",
+          "description": "Total lines changed"
+        },
+        "issuesFound": {
+          "type": "integer",
+          "description": "Total number of issues found"
+        },
+        "criticalIssues": {
+          "type": "integer",
+          "description": "Number of critical issues"
+        }
+      },
+      "description": "Review metrics"
+    }
+  },
+  "required": ["overallAssessment", "summary", "issues"]
+}
